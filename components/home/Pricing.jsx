@@ -135,7 +135,10 @@ export default function Pricing() {
                 </ul>
               </div>
 
-              <button
+              <a
+                href={`https://wa.me/8801758197272?text=${encodeURIComponent(`হ্যালো, আমি আপনার "${pkg.name}" প্যাকেজটি সম্পর্কে বিস্তারিত জানতে আগ্রহী।`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${
                   pkg.popular
                     ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-md shadow-primary/20"
@@ -143,7 +146,7 @@ export default function Pricing() {
                 }`}
               >
                 {pkg.buttonText}
-              </button>
+              </a>
             </motion.div>
           ))}
         </div>
@@ -160,9 +163,14 @@ export default function Pricing() {
             <p className="text-sm text-muted-foreground leading-relaxed">
               ⚠️ <strong className="text-foreground">মনে রাখুন:</strong> উপরের প্যাকেজসমূহে Domain ও Hosting অন্তর্ভুক্ত নয়। আপনি যদি আপনার কোনো বিশেষ রিকোয়ারমেন্ট বা অতিরিক্ত কোনো ফিচার যুক্ত করতে চান, তবে সরাসরি আমাদের সাথে আলোচনা করতে পারেন।
             </p>
-            <button className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline transition-all">
+            <a
+              href={`https://wa.me/8801758197272?text=${encodeURIComponent("হ্যালো, আমি আমার প্রজেক্টের রিকোয়ারমেন্ট নিয়ে আলোচনা করতে চাই।")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline transition-all"
+            >
               এখনই আলোচনা শুরু করুন &rarr;
-            </button>
+            </a>
           </div>
         </motion.div>
 
