@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/utils/constants";
-import { Menu, X, Code2 } from "lucide-react";
+import { Menu, X, Code2, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
@@ -55,6 +55,15 @@ export default function Navbar() {
             >
               Admin
             </a>
+            <a
+              href={`https://wa.me/8801758197272?text=${encodeURIComponent("হ্যালো, আমি আপনার সাথে একটি ওয়েবসাইট প্রজেক্ট নিয়ে কথা বলতে চাই।")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-3 inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 transition-colors"
+            >
+              <MessageSquare className="h-4 w-4" />
+              WhatsApp
+            </a>
           </div>
 
           <button
@@ -91,6 +100,18 @@ export default function Navbar() {
                 className="block px-4 py-3 text-sm font-semibold text-primary hover:bg-secondary rounded-lg transition-colors"
               >
                 Admin
+              </a>
+              <a
+                href={`https://wa.me/8801758197272?text=${encodeURIComponent("হ্যালো, আমি আপনার সাথে একটি ওয়েবসাইট প্রজেক্ট নিয়ে কথা বলতে চাই।")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                className="block px-4 py-3 text-sm font-semibold text-emerald-600 hover:bg-secondary rounded-lg transition-colors"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <MessageSquare className="h-4 w-4" />
+                  WhatsApp
+                </span>
               </a>
             </div>
           </motion.div>
