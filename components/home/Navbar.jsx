@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/utils/constants";
 import { Menu, X, Code2, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -64,14 +65,18 @@ export default function Navbar() {
               <MessageSquare className="h-4 w-4" />
               WhatsApp
             </a>
+            <ThemeToggle />
           </div>
 
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
-          >
-            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="lg:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="p-2 rounded-lg hover:bg-secondary transition-colors"
+            >
+              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
