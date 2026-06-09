@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { useParams, useRouter } from "next/navigation";
 import AdminSidebar from "@/components/admin/Sidebar";
 import { Save, X, Plus, AlertCircle } from "lucide-react";
@@ -195,7 +196,12 @@ export default function EditProject() {
     <div className="flex min-h-screen">
       <AdminSidebar />
       <main className="flex-1 bg-background">
-        <div className="p-6 lg:p-8 max-w-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="p-6 lg:p-8 max-w-3xl"
+        >
           <div className="mb-8">
             <h1 className="text-2xl font-bold">Edit Project</h1>
             <p className="text-sm text-muted-foreground mt-1">
@@ -454,7 +460,7 @@ export default function EditProject() {
               </button>
             </div>
           </form>
-        </div>
+        </motion.div>
       </main>
     </div>
   );

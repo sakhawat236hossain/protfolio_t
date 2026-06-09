@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import AdminSidebar from "@/components/admin/Sidebar";
 import ProjectDemoModal from "@/components/ui/ProjectDemoModal";
@@ -135,7 +136,12 @@ export default function AdminProjects() {
               )}
             </div>
           ) : (
-            <div className="rounded-lg border border-border overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45 }}
+              className="rounded-lg border border-border overflow-hidden"
+            >
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
@@ -165,8 +171,11 @@ export default function AdminProjects() {
                   </thead>
                   <tbody>
                     {projects.map((project) => (
-                      <tr
+                      <motion.tr
                         key={project._id}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
                         className="border-b border-border last:border-0 hover:bg-secondary/30 transition-colors"
                       >
                         <td className="px-4 py-3">
@@ -275,12 +284,12 @@ export default function AdminProjects() {
                             </button>
                           </div>
                         </td>
-                      </tr>
+                      </motion.tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
       </main>

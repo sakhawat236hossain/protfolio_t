@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { Code2, Eye, EyeOff, LogIn } from "lucide-react";
 
@@ -58,7 +59,12 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-background to-accent/5 px-4">
-      <div className="w-full max-w-md">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-md"
+      >
         <div className="text-center mb-8">
           <a href="/" className="inline-flex items-center gap-2 mb-6">
             <Code2 className="h-8 w-8 text-primary" />
@@ -142,7 +148,7 @@ export default function AdminLogin() {
         <p className="text-center text-xs text-muted-foreground mt-6">
           Default: admin@codenest.com / admin123
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 }
