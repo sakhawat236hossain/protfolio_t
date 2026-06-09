@@ -136,21 +136,42 @@ export default function Hero() {
               className="flex flex-wrap items-center gap-4 pt-2"
             >
               <a
-                href="#projects"
-                className="group relative inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-primary text-primary-foreground rounded-xl font-bold shadow-lg hover:shadow-primary/30 transition-all duration-300 overflow-hidden transform hover:-translate-y-0.5"
+                href={`https://wa.me/8801758197272?text=${encodeURIComponent("হ্যালো, আমি আপনার সাথে একটি ওয়েবসাইট প্রজেক্ট নিয়ে কথা বলতে চাই।")}`}
+                target="_blank"
+                rel="noreferrer"
+                className="group relative inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-emerald-600 text-white rounded-xl font-bold shadow-2xl shadow-emerald-600/20 hover:bg-emerald-500 transition-all duration-300 overflow-hidden transform hover:-translate-y-0.5"
               >
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
-                Explore Projects
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                Talk on WhatsApp
+                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               
               <a
-                href="#about"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-border bg-background/50 hover:bg-secondary/80 backdrop-blur-sm rounded-xl font-bold transition-all duration-300 transform hover:-translate-y-0.5"
+                href="#projects"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-border bg-background/70 hover:bg-secondary/80 backdrop-blur-sm rounded-xl font-bold transition-all duration-300 transform hover:-translate-y-0.5"
               >
-                Learn More
-                <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-0.5 transition-all" />
+                Explore Projects
+                <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-all" />
               </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3"
+            >
+              <div className="rounded-2xl border border-border bg-background/80 px-4 py-3 text-sm text-muted-foreground flex items-center gap-3">
+                <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+                Free quote within 24 hours
+              </div>
+              <div className="rounded-2xl border border-border bg-background/80 px-4 py-3 text-sm text-muted-foreground flex items-center gap-3">
+                <span className="inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
+                100% responsive, sales-ready websites
+              </div>
+              <div className="rounded-2xl border border-border bg-background/80 px-4 py-3 text-sm text-muted-foreground flex items-center gap-3">
+                <span className="inline-flex h-2.5 w-2.5 rounded-full bg-accent" />
+                Dedicated support for 3 months
+              </div>
             </motion.div>
 
             {/* Redesigned Premium Stats Cards */}
