@@ -7,6 +7,7 @@ import Clients from "@/components/home/Clients";
 import FAQ from "@/components/home/FAQ";
 import CTA from "@/components/home/CTA";
 import Footer from "@/components/home/Footer";
+import WhatsAppWidget from "@/components/home/WhatsAppWidget";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <FAQ />
       <CTA />
       <Footer />
+      <WhatsAppWidget />
     </main>
   );
 }
