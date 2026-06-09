@@ -88,7 +88,7 @@ export default function CTA() {
                   
                   <a
                     href="tel:+8801758197272"
-                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-secondary hover:bg-secondary/80 text-secondary-foreground font-semibold rounded-xl border border-border/60 transition-all duration-300"
+                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-secondary text-secondary-foreground font-semibold rounded-xl border border-border/60 hover:bg-secondary/90 transition-all duration-300"
                   >
                     সরাসরি কল করুন
                   </a>
