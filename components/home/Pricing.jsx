@@ -142,7 +142,7 @@ export default function Pricing() {
                 className={`w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${
                   pkg.popular
                     ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-md shadow-primary/20"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border"
+                    : "bg-emerald-600 text-white hover:bg-emerald-500 shadow-emerald-600/20"
                 }`}
               >
                 {pkg.buttonText}
