@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import AdminSidebar from "@/components/admin/Sidebar";
+import ProjectDemoModal from "@/components/ui/ProjectDemoModal";
 import { Plus, Pencil, Trash2, Star, ExternalLink, AlertCircle } from "lucide-react";
 
 export default function AdminProjects() {
@@ -11,6 +12,14 @@ export default function AdminProjects() {
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState(null);
   const [dbError, setDbError] = useState("");
+  const [demoModalOpen, setDemoModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState({ url: "", title: "" });
+
+  const openDemo = (project) => {
+    if (!project.liveLink) return;
+    setSelectedProject({ url: project.liveLink, title: project.title });
+    setDemoModalOpen(true);
+  };
 
   useEffect(() => {
     fetchProjects();
@@ -240,14 +249,12 @@ export default function AdminProjects() {
                         <td className="px-4 py-3">
                           <div className="flex items-center justify-end gap-2">
                             {project.liveLink && (
-                              <a
-                                href={project.liveLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="p-1.5 rounded hover:bg-secondary text-muted-foreground transition-colors"
+                              <button
+                                onClick={() => openDemo(project)}
+                                className="p-1.5 rounded hover:bg-secondary text-muted-foreground hover:text-primary transition-colors"
                               >
                                 <ExternalLink className="h-4 w-4" />
-                              </a>
+                              </button>
                             )}
                             <button
                               onClick={() =>
@@ -277,6 +284,12 @@ export default function AdminProjects() {
           )}
         </div>
       </main>
+      <ProjectDemoModal
+        isOpen={demoModalOpen}
+        onClose={() => setDemoModalOpen(false)}
+        url={selectedProject.url}
+        title={selectedProject.title}
+      />
     </div>
   );
 }
