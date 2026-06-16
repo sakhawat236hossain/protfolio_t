@@ -18,6 +18,16 @@ const buttonVariants = cva(
           'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
+        animated:
+          'relative inline-flex items-center justify-center h-12 rounded-full border-2 border-transparent bg-gradient-to-r from-[#9ba3ffd9] to-[#3d5af1] px-6 font-medium text-white shadow-2xl transition duration-300 hover:from-[#6c78ff] hover:to-[#2c49f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#7c82f8] dark:from-[#070e41] dark:to-[#141d57]',
+        active:
+          'group relative inline-flex items-center justify-center h-12 rounded-md border-2 border-[#263381] bg-transparent px-6 font-medium text-black transition-all duration-100 translate-x-[3px] translate-y-[3px] hover:translate-x-[0px] hover:translate-y-[0px] [box-shadow:0px_0px_rgb(38_51_129)] hover:[box-shadow:5px_5px_rgb(38_51_129)] dark:text-white dark:border-[#4c64ff] dark:hover:[box-shadow:5px_5px_rgb(76_100_255)] active:[box-shadow:0px_0px_rgb(38_51_129)] active:translate-x-[3px] active:translate-y-[3px] dark:active:[box-shadow:0px_0px_rgb(76_100_255)]',
+        clickdown:
+          'group relative inline-flex items-center justify-center h-12 rounded-md border-2 border-[#263381] bg-transparent px-6 font-medium text-black transition-all duration-100 [box-shadow:5px_5px_rgb(38_51_129)] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_rgb(38_51_129)] dark:text-white dark:border-[#4c64ff] dark:[box-shadow:5px_5px_rgb(76_100_255)] dark:active:[box-shadow:0px_0px_rgb(76_100_255)]',
+        hoverGlow:
+          'group relative inline-flex items-center justify-center h-12 rounded-full border-2 border-[#263381] bg-transparent px-6 font-medium text-black transition-all duration-300 hover:-translate-x-3 hover:-translate-y-3 hover:[box-shadow:5px_5px_20px_rgba(57,68,129,0.35)] dark:text-white dark:border-[#4c64ff]',
+        rotating:
+          'relative inline-flex h-12 rounded-full p-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#7c82f8]'
       },
       size: {
         default: 'h-10 px-4 py-2',

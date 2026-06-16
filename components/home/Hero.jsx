@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { ArrowRight, Sparkles, Terminal, Activity, Zap, CheckCircle2, ChevronRight } from "lucide-react";
 import { useRef } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -90,22 +91,22 @@ export default function Hero() {
               transition={{ duration: 0.55, delay: 0.3 }}
               className="flex flex-wrap items-center gap-4"
             >
-              <a
-                href={`https://wa.me/8801758197272?text=${encodeURIComponent("হ্যালো, আমি আপনার সাথে একটি ওয়েবসাইট প্রজেক্ট নিয়ে কথা বলতে চাই।")}`}
-                target="_blank"
-                rel="noreferrer"
-                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-emerald-600 px-8 py-4 text-sm font-semibold text-white shadow-2xl shadow-emerald-600/20 transition-all duration-300 hover:bg-emerald-500"
-              >
-                Talk on WhatsApp
-                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
-              <a
-                href="#projects"
-                className="group inline-flex items-center justify-center gap-2 rounded-full border border-border/70 bg-background/80 px-8 py-4 text-sm font-semibold text-foreground transition-all duration-300 hover:bg-secondary/90"
-              >
-                Explore Projects
-                <ChevronRight className="h-4 w-4 text-muted-foreground transition-all group-hover:text-foreground" />
-              </a>
+              <Button asChild variant="animated" className="w-full max-w-xs justify-center gap-2.5">
+                <a
+                  href={`https://wa.me/8801758197272?text=${encodeURIComponent("হ্যালো, আমি আপনার সাথে একটি ওয়েবসাইট প্রজেক্ট নিয়ে কথা বলতে চাই।")}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Talk on WhatsApp
+                  <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+              </Button>
+              <Button asChild variant="hoverGlow" className="w-full max-w-xs justify-center gap-2.5 bg-background/80 text-foreground">
+                <a href="#projects">
+                  Explore Projects
+                  <ChevronRight className="h-4 w-4 text-muted-foreground transition-all group-hover:text-foreground" />
+                </a>
+              </Button>
             </motion.div>
 
             <motion.div
