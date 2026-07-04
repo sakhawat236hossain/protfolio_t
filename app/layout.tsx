@@ -38,8 +38,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth dark">
-      <body className={`${inter.className} antialiased bg-[#0a0a0a] text-white selection:bg-white/20 selection:text-white`}>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.className} antialiased bg-background text-foreground selection:bg-primary/20 selection:text-primary transition-colors duration-300`}>
         <ThemeProvider>
           <CustomCursor />
           <AnimatedBackground />

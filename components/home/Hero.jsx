@@ -57,7 +57,7 @@ export default function Hero() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-16 lg:pt-40 lg:pb-24"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-16 lg:pt-40 lg:pb-24 bg-background transition-colors duration-500"
     >
       <div className="absolute inset-0 z-0">
         <motion.div
@@ -79,7 +79,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-white backdrop-blur-xl"
+              className="inline-flex items-center gap-3 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-5 py-2 text-sm font-medium text-gray-800 dark:text-white backdrop-blur-xl transition-colors duration-300"
             >
               <div className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -93,10 +93,10 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.05] text-white"
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.05] text-gray-900 dark:text-white transition-colors duration-300"
             >
               We Build Premium <br />
-              <span className="bg-gradient-to-r from-primary via-blue-400 to-purple-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-blue-500 to-purple-600 dark:via-blue-400 dark:to-purple-500 bg-clip-text text-transparent">
                 Digital Experiences
               </span>
             </motion.h1>
@@ -105,7 +105,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-2xl text-lg sm:text-xl leading-relaxed text-gray-400 font-light"
+              className="max-w-2xl text-lg sm:text-xl leading-relaxed text-gray-600 dark:text-gray-400 font-light transition-colors duration-300"
             >
               <TypewriterText text="Elevate your brand with cutting-edge UI/UX design, motion graphics, and high-performance engineering designed for maximum conversion." />
             </motion.div>
@@ -122,20 +122,20 @@ export default function Hero() {
                 href={`https://wa.me/8801758197272?text=${encodeURIComponent("Hello, I'd like to discuss an enterprise web project.")}`}
                 target="_blank"
                 rel="noreferrer"
-                className="group relative inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-semibold overflow-hidden hover-target"
+                className="group relative inline-flex items-center gap-3 bg-gray-900 text-white dark:bg-white dark:text-black px-8 py-4 rounded-full font-semibold overflow-hidden hover-target transition-colors duration-300"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Book a Meeting
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </span>
-                <div className="absolute inset-0 bg-gray-200 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
+                <div className="absolute inset-0 bg-gray-800 dark:bg-gray-200 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
               </motion.a>
               
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="#projects"
-                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-white border border-white/20 hover:bg-white/10 transition-colors hover-target"
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-gray-900 dark:text-white border border-black/20 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/10 transition-colors hover-target duration-300"
               >
                 <Play className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" fill="currentColor" />
                 View Showreel
@@ -146,19 +146,19 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="pt-12 border-t border-white/10 grid grid-cols-3 gap-6 max-w-2xl"
+              className="pt-12 border-t border-black/10 dark:border-white/10 grid grid-cols-3 gap-6 max-w-2xl transition-colors duration-300"
             >
               <div>
-                <p className="text-4xl font-bold text-white mb-1">10<span className="text-primary">+</span></p>
-                <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">Years Exp.</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-white mb-1 transition-colors duration-300">10<span className="text-primary">+</span></p>
+                <p className="text-sm text-gray-600 dark:text-gray-500 font-medium uppercase tracking-wider transition-colors duration-300">Years Exp.</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-white mb-1">200<span className="text-primary">+</span></p>
-                <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">Projects</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-white mb-1 transition-colors duration-300">200<span className="text-primary">+</span></p>
+                <p className="text-sm text-gray-600 dark:text-gray-500 font-medium uppercase tracking-wider transition-colors duration-300">Projects</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-white mb-1">99<span className="text-primary">%</span></p>
-                <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">Satisfaction</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-white mb-1 transition-colors duration-300">99<span className="text-primary">%</span></p>
+                <p className="text-sm text-gray-600 dark:text-gray-500 font-medium uppercase tracking-wider transition-colors duration-300">Satisfaction</p>
               </div>
             </motion.div>
           </div>
@@ -169,18 +169,18 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
               animate={{ opacity: 1, scale: 1, rotateY: 0 }}
               transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-[500px] rounded-[2.5rem] bg-white/5 border border-white/10 p-4 shadow-2xl backdrop-blur-2xl"
+              className="relative w-full max-w-[500px] rounded-[2.5rem] bg-white/50 dark:bg-white/5 border border-black/10 dark:border-white/10 p-4 shadow-2xl backdrop-blur-2xl transition-colors duration-300"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent rounded-[2.5rem] pointer-events-none" />
               
-              <div className="relative bg-[#0a0a0a] rounded-[2rem] border border-white/5 overflow-hidden">
-                <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-white/[0.02]">
+              <div className="relative bg-white dark:bg-[#0a0a0a] rounded-[2rem] border border-black/5 dark:border-white/5 overflow-hidden transition-colors duration-300 shadow-inner">
+                <div className="flex items-center gap-2 px-4 py-3 border-b border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.02] transition-colors duration-300">
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-red-500" />
                     <div className="w-3 h-3 rounded-full bg-yellow-500" />
                     <div className="w-3 h-3 rounded-full bg-green-500" />
                   </div>
-                  <div className="mx-auto px-4 py-1 rounded-md bg-white/5 text-xs text-gray-400 font-mono flex items-center gap-2">
+                  <div className="mx-auto px-4 py-1 rounded-md bg-black/5 dark:bg-white/5 text-xs text-gray-600 dark:text-gray-400 font-mono flex items-center gap-2 transition-colors duration-300">
                     <Terminal className="w-3 h-3 text-primary" />
                     npm run dev
                   </div>
@@ -199,25 +199,25 @@ export default function Hero() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.5 }}
-                    className="text-gray-300"
+                    className="text-gray-700 dark:text-gray-300 transition-colors duration-300"
                   >
-                    <span className="text-purple-400">import</span> {'{'} motion {'}'} <span className="text-purple-400">from</span> <span className="text-green-400">'framer-motion'</span>;
+                    <span className="text-purple-600 dark:text-purple-400">import</span> {'{'} motion {'}'} <span className="text-purple-600 dark:text-purple-400">from</span> <span className="text-green-600 dark:text-green-400">'framer-motion'</span>;
                     <br/><br/>
-                    <span className="text-blue-400">const</span> EnterpriseApp = () =&gt; {'{'}
+                    <span className="text-blue-600 dark:text-blue-400">const</span> EnterpriseApp = () =&gt; {'{'}
                     <br/>
-                    &nbsp;&nbsp;<span className="text-purple-400">return</span> (
+                    &nbsp;&nbsp;<span className="text-purple-600 dark:text-purple-400">return</span> (
                     <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-300">motion.div</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-500 dark:text-blue-300">motion.div</span>
                     <br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animate={'{'} scale: 1.05 {'}'}
                     <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;className=<span className="text-green-400">"premium-ui"</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;className=<span className="text-green-600 dark:text-green-400">"premium-ui"</span>
                     <br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&gt;
                     <br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;High Performance Delivered
                     <br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-300">motion.div</span>&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="text-blue-500 dark:text-blue-300">motion.div</span>&gt;
                     <br/>
                     &nbsp;&nbsp;);
                     <br/>
@@ -230,14 +230,14 @@ export default function Hero() {
               <motion.div
                 animate={{ y: [-10, 10, -10] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-10 -left-10 bg-white/10 backdrop-blur-xl border border-white/20 p-4 rounded-2xl shadow-xl flex items-center gap-4 translate-z-50"
+                className="absolute -top-10 -left-10 bg-white/80 dark:bg-white/10 backdrop-blur-xl border border-black/10 dark:border-white/20 p-4 rounded-2xl shadow-xl flex items-center gap-4 translate-z-50 transition-colors duration-300"
               >
-                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
                   <Zap className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-white font-bold">100/100</p>
-                  <p className="text-xs text-gray-400">Performance Score</p>
+                  <p className="text-gray-900 dark:text-white font-bold transition-colors duration-300">100/100</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-300">Performance Score</p>
                 </div>
               </motion.div>
 
@@ -245,14 +245,14 @@ export default function Hero() {
               <motion.div
                 animate={{ y: [10, -10, 10] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-10 -right-10 bg-white/10 backdrop-blur-xl border border-white/20 p-4 rounded-2xl shadow-xl flex items-center gap-4 translate-z-50"
+                className="absolute -bottom-10 -right-10 bg-white/80 dark:bg-white/10 backdrop-blur-xl border border-black/10 dark:border-white/20 p-4 rounded-2xl shadow-xl flex items-center gap-4 translate-z-50 transition-colors duration-300"
               >
-                <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
+                <div className="w-12 h-12 rounded-full bg-green-500/10 dark:bg-green-500/20 flex items-center justify-center text-green-600 dark:text-green-400">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-white font-bold">SEO Optimized</p>
-                  <p className="text-xs text-gray-400">Rank #1 Faster</p>
+                  <p className="text-gray-900 dark:text-white font-bold transition-colors duration-300">SEO Optimized</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-300">Rank #1 Faster</p>
                 </div>
               </motion.div>
             </motion.div>
@@ -261,14 +261,14 @@ export default function Hero() {
       </div>
 
       {/* Infinite Marquee */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-white/5 border-y border-white/10 py-4 z-10 backdrop-blur-md">
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-black/5 dark:bg-white/5 border-y border-black/10 dark:border-white/10 py-4 z-10 backdrop-blur-md transition-colors duration-300">
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
           transition={{ duration: 20, ease: "linear", repeat: Infinity }}
           className="flex items-center whitespace-nowrap gap-16 pr-16 w-fit"
         >
           {[...LOGOS, ...LOGOS].map((logo, idx) => (
-            <div key={idx} className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors cursor-default">
+            <div key={idx} className="flex items-center gap-3 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors cursor-default">
               {logo.icon}
               <span className="text-lg font-semibold tracking-wider">{logo.name}</span>
             </div>
