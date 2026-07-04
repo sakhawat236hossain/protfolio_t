@@ -1,179 +1,149 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, HelpCircle, AlertCircle, Sparkles } from "lucide-react";
+import { Check, Sparkles, ArrowRight } from "lucide-react";
 
 export default function Pricing() {
   const packages = [
     {
-      name: "স্টার্টার",
-      subtitle: "ছোট ব্যবসার জন্য আদর্শ",
-      price: "৳১,২০০+",
-      note: "১,২০০ ৳ থেকে শুরু",
+      name: "Starter",
+      subtitle: "Perfect for small businesses",
+      price: "$999",
+      period: "starting at",
       features: [
-        "ল্যান্ডিং পেজ + অ্যাডমিন প্যানেল",
-        "প্রোডাক্ট অ্যাড টু কার্ট",
-        "অর্ডার সাবমিট সিস্টেম",
-        "স্টক ম্যানেজমেন্ট",
-        "কাস্টমার অর্ডার হিস্ট্রি",
-        "১ মাস ফ্রি সাপোর্ট",
+        "Custom Landing Page",
+        "Responsive Design",
+        "Basic CMS Integration",
+        "Contact Form & Leads",
+        "SEO Optimization",
+        "1 Month Support",
       ],
-      buttonText: "শুরু করুন",
+      buttonText: "Start Project",
       popular: false,
-      gradient: "from-blue-500/10 to-indigo-500/10 hover:border-blue-500/30",
     },
     {
-      name: "প্রো",
-      subtitle: "মাঝারি ব্যবসার জন্য পারফেক্ট",
-      price: "কাস্টম কোটেশন",
-      note: "ফিচার ও রিকোয়ারমেন্ট অনুযায়ী",
+      name: "Professional",
+      subtitle: "Ideal for growing companies",
+      price: "Custom",
+      period: "quote based",
       features: [
-        "কমপ্লিট ওয়েবসাইট / অ্যাপ",
-        "ই-commerce ইকোসিস্টেম",
-        "Pixel + TikTok + GA4 সেটআপ",
-        "ফুল অ্যাডমিন প্যানেল",
-        "৩ মাস ফ্রি সাপোর্ট",
-        "ফ্রি বেসিক ফিচার ডেভেলপমেন্ট",
+        "Full Web Application",
+        "E-commerce Ecosystem",
+        "Advanced Animations",
+        "Custom Admin Panel",
+        "Analytics Setup",
+        "3 Months Support",
       ],
-      buttonText: "কোটেশন নিন",
+      buttonText: "Get Quote",
       popular: true,
-      gradient: "from-primary/15 via-primary/5 to-purple-500/10 hover:border-primary/40",
     },
     {
-      name: "এন্টারপ্রাইজ",
-      subtitle: "বড় প্রজেক্ট ও কর্পোরেট",
-      price: "আলোচনা সাপেক্ষে",
-      note: "প্রজেক্টের পরিধি অনুযায়ী",
+      name: "Enterprise",
+      subtitle: "Large scale & corporate",
+      price: "Let's Talk",
+      period: "tailored pricing",
       features: [
-        "POS / HRM / ERP সিস্টেম",
-        "মোবাইল অ্যাপ (Android + iOS)",
-        "কাস্টম API ইন্টিগ্রেশন",
-        "ক্লাউড ডেপ্লয়মেন্ট",
-        "ডেডিকেটেড সাপোর্ট",
-        "SLA গ্যারান্টি",
+        "SaaS / ERP Solutions",
+        "Mobile App (iOS/Android)",
+        "Custom API Integrations",
+        "Cloud Infrastructure",
+        "Dedicated SLA",
+        "24/7 Priority Support",
       ],
-      buttonText: "আলোচনা করুন",
+      buttonText: "Contact Sales",
       popular: false,
-      gradient: "from-emerald-500/10 to-teal-500/10 hover:border-emerald-500/30",
     },
   ];
 
   return (
-    <section id="pricing" className="py-20 lg:py-32 relative overflow-hidden bg-background">
-      {/* Decorative ambient background */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10" />
+    <section id="pricing" className="py-24 lg:py-32 relative bg-[#0a0a0a] overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-[#0a0a0a] to-[#0a0a0a] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <span className="inline-block text-sm font-semibold text-primary uppercase tracking-wider bg-primary/10 px-4 py-1.5 rounded-full mb-4">
-            মূল্য তালিকা
+          <span className="inline-block text-sm font-semibold text-primary uppercase tracking-widest bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full mb-6">
+            Investment
           </span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold mt-2 mb-4 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent">
-            সাশ্রয়ী মূল্যে <span className="text-primary">প্রফেশনাল সলিউশন</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6">
+            Transparent <span className="text-primary">Pricing</span>
           </h2>
-          <p className="max-w-2xl mx-auto text-muted-foreground text-lg mb-4">
-            আপনার ব্যবসার আকার এবং প্রয়োজন অনুযায়ী সেরা ডেভেলপমেন্ট প্যাকেজ বেছে নিন।
+          <p className="max-w-2xl mx-auto text-gray-400 text-lg leading-relaxed">
+            Choose the right development package for your business needs. No hidden fees, just premium quality.
           </p>
-          <div className="inline-flex items-center gap-2 text-xs sm:text-sm text-yellow-500 bg-yellow-500/10 px-4 py-2 rounded-lg border border-yellow-500/20 backdrop-blur-sm">
-            <AlertCircle className="h-4 w-4 shrink-0" />
-            <span>Domain ও Hosting আলাদা। নিচের প্যাকেজগুলো শুধুমাত্র ডেভেলপমেন্ট খরচ নির্দেশ করে।</span>
-          </div>
         </motion.div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid md:grid-cols-3 gap-8 items-stretch">
+        <div className="grid lg:grid-cols-3 gap-8 items-center max-w-6xl mx-auto">
           {packages.map((pkg, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`relative flex flex-col justify-between p-8 rounded-3xl border border-border/50 bg-gradient-to-b ${pkg.gradient} backdrop-blur-md shadow-lg hover:shadow-2xl transition-all duration-300 ${
-                pkg.popular ? "md:scale-105 border-primary/30 shadow-primary/5" : ""
-              }`}
+              className={`relative flex flex-col p-8 rounded-[2.5rem] border ${
+                pkg.popular 
+                  ? "border-primary bg-gradient-to-b from-primary/10 to-transparent lg:-mt-8 lg:mb-8 shadow-2xl shadow-primary/20" 
+                  : "border-white/10 bg-white/[0.02]"
+              } backdrop-blur-xl group hover-target`}
             >
               {pkg.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center gap-1 px-4 py-1 bg-primary text-primary-foreground text-xs font-bold rounded-full shadow-lg">
-                  <Sparkles className="h-3 w-3 fill-primary-foreground" />
-                  <span>সবচেয়ে জনপ্রিয়</span>
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-1.5 bg-primary text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-lg">
+                  <Sparkles className="h-3.5 w-3.5" />
+                  Most Popular
                 </div>
               )}
 
-              <div>
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-foreground mb-1">{pkg.name}</h3>
-                  <p className="text-sm text-muted-foreground">{pkg.subtitle}</p>
-                </div>
-
-                <div className="mb-6 pb-6 border-b border-border/40">
-                  <span className="text-3xl font-extrabold text-foreground tracking-tight">
-                    {pkg.price}
-                  </span>
-                  <p className="text-xs text-muted-foreground mt-2 flex items-center gap-1">
-                    <HelpCircle className="h-3 w-3" /> {pkg.note}
-                  </p>
-                </div>
-
-                <ul className="space-y-4 mb-8">
-                  {pkg.features.map((feature, fIdx) => (
-                    <li key={fIdx} className="flex items-start gap-3 text-sm text-foreground/85">
-                      <span className="p-0.5 bg-primary/10 rounded-full text-primary shrink-0 mt-0.5">
-                        <Check className="h-3.5 w-3.5" />
-                      </span>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold text-white mb-2">{pkg.name}</h3>
+                <p className="text-sm text-gray-400">{pkg.subtitle}</p>
               </div>
 
+              <div className="mb-8 pb-8 border-b border-white/10">
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-5xl font-extrabold text-white tracking-tight">
+                    {pkg.price}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">
+                  {pkg.period}
+                </p>
+              </div>
+
+              <ul className="space-y-4 mb-10 flex-1">
+                {pkg.features.map((feature, fIdx) => (
+                  <li key={fIdx} className="flex items-start gap-3 text-sm text-gray-300">
+                    <span className={`p-1 rounded-full shrink-0 mt-0.5 ${pkg.popular ? "bg-primary/20 text-primary" : "bg-white/10 text-white"}`}>
+                      <Check className="h-3 w-3" />
+                    </span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
               <a
-                href={`https://wa.me/8801758197272?text=${encodeURIComponent(`হ্যালো, আমি আপনার "${pkg.name}" প্যাকেজটি সম্পর্কে বিস্তারিত জানতে আগ্রহী।`)}`}
+                href={`https://wa.me/8801758197272?text=${encodeURIComponent(`Hello, I'm interested in the ${pkg.name} package.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${
+                className={`w-full py-4 px-6 rounded-full font-bold transition-all duration-300 flex items-center justify-center gap-2 group-hover:scale-[1.02] ${
                   pkg.popular
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-md shadow-primary/20"
-                    : "bg-emerald-600 text-white hover:bg-emerald-500 shadow-emerald-600/20"
+                    ? "bg-primary text-white hover:bg-primary/90 shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+                    : "bg-white/10 text-white hover:bg-white/20 border border-white/10"
                 }`}
               >
                 {pkg.buttonText}
+                <ArrowRight className="h-4 w-4" />
               </a>
             </motion.div>
           ))}
         </div>
-
-        {/* Footer Note */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-16 text-center"
-        >
-          <div className="inline-block p-6 rounded-2xl bg-card border border-border/50 backdrop-blur-sm max-w-3xl">
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              ⚠️ <strong className="text-foreground">মনে রাখুন:</strong> উপরের প্যাকেজসমূহে Domain ও Hosting অন্তর্ভুক্ত নয়। আপনি যদি আপনার কোনো বিশেষ রিকোয়ারমেন্ট বা অতিরিক্ত কোনো ফিচার যুক্ত করতে চান, তবে সরাসরি আমাদের সাথে আলোচনা করতে পারেন।
-            </p>
-            <a
-              href={`https://wa.me/8801758197272?text=${encodeURIComponent("হ্যালো, আমি আমার প্রজেক্টের রিকোয়ারমেন্ট নিয়ে আলোচনা করতে চাই।")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline transition-all"
-            >
-              এখনই আলোচনা শুরু করুন &rarr;
-            </a>
-          </div>
-        </motion.div>
-
       </div>
     </section>
   );

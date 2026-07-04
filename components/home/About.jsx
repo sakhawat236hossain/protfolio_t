@@ -1,11 +1,66 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Globe, Palette, Smartphone, Cloud, Sparkles, Zap } from "lucide-react";
-import { useRef } from "react";
+import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from "framer-motion";
+import { Globe, Palette, Smartphone, Cloud, Sparkles, Zap, Code2, Database, Layout, Server } from "lucide-react";
+import { useRef, MouseEvent } from "react";
 import { SERVICES } from "@/utils/constants";
 
 const ICON_MAP = { Globe, Palette, Smartphone, Cloud };
+
+function SkillCard({ service, index }) {
+  const Icon = ICON_MAP[service.icon] || Code2;
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }) {
+    const { left, top, width, height } = currentTarget.getBoundingClientRect();
+    const x = clientX - left;
+    const y = clientY - top;
+    
+    // For 3D tilt effect
+    mouseX.set((x / width) * 2 - 1);
+    mouseY.set((y / height) * 2 - 1);
+  }
+
+  function handleMouseLeave() {
+    mouseX.set(0);
+    mouseY.set(0);
+  }
+
+  const rotateX = useTransform(mouseY, [-1, 1], [15, -15]);
+  const rotateY = useTransform(mouseX, [-1, 1], [-15, 15]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      className="group relative h-full rounded-[2rem] border border-white/10 bg-white/[0.02] p-8 hover:bg-white/[0.04] transition-colors"
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none" />
+      
+      <div style={{ transform: "translateZ(50px)" }} className="relative z-10 h-16 w-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-gray-400 group-hover:text-primary group-hover:border-primary/50 group-hover:bg-primary/10 transition-all duration-300">
+        <Icon className="w-8 h-8" />
+      </div>
+
+      <h3 style={{ transform: "translateZ(40px)" }} className="text-xl font-bold text-white mb-4 group-hover:text-primary transition-colors">
+        {service.title}
+      </h3>
+      
+      <p style={{ transform: "translateZ(30px)" }} className="text-gray-400 leading-relaxed text-sm">
+        {service.description}
+      </p>
+
+      <div style={{ transform: "translateZ(20px)" }} className="mt-8 flex items-center text-sm font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        Learn More <Zap className="w-4 h-4 ml-2" />
+      </div>
+    </motion.div>
+  );
+}
 
 export default function About() {
   const containerRef = useRef(null);
@@ -15,233 +70,120 @@ export default function About() {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, type: "spring" } },
-  };
-
-  const statVariants = {
-    hidden: { opacity: 0, scale: 0.5 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, type: "spring", stiffness: 100 },
-    },
-  };
 
   return (
-    <section
-      ref={containerRef}
-      id="about"
-      className="py-20 lg:py-32 relative overflow-hidden bg-background"
-    >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        {/* Top gradient orb */}
-        <motion.div
-          animate={{
-            y: [0, -30, 0],
-            x: [0, 30, 0],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-40 -right-40 w-80 h-80 bg-primary/20 rounded-full blur-3xl"
-        />
-        {/* Bottom gradient orb */}
-        <motion.div
-          animate={{
-            y: [0, 30, 0],
-            x: [0, -30, 0],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/15 rounded-full blur-3xl"
-        />
-        {/* Center accent */}
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-        />
+    <section ref={containerRef} id="about" className="py-24 lg:py-32 relative overflow-hidden bg-[#0a0a0a]">
+      {/* Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex justify-center mb-12"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm">
-            <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-            <span className="text-sm font-semibold text-primary uppercase tracking-widest">
-              About CodeNest Studio
-            </span>
-            <Zap className="h-4 w-4 text-primary" />
-          </div>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Content */}
+        <div className="flex flex-col items-center justify-center text-center mb-20">
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            className="space-y-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-6"
           >
-            <motion.div variants={itemVariants}>
-              <h2 className="text-4xl sm:text-5xl lg:text-5xl font-black leading-tight tracking-tight">
-                We Transform
-                <span className="block bg-gradient-to-r from-primary via-purple-500 to-indigo-500 bg-clip-text text-transparent animate-pulse">
-                  Ideas Into Digital Reality
-                </span>
-              </h2>
-            </motion.div>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-lg text-muted-foreground leading-relaxed"
-            >
-              CodeNest Studio is a full-service web development agency that combines
-              technical excellence with creative vision. We partner with startups and
-              enterprises to build scalable, performant applications that solve real
-              problems.
-            </motion.p>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-lg text-muted-foreground leading-relaxed"
-            >
-              Our mission is simple: deliver exceptional digital experiences that drive
-              measurable results. We believe great software starts with understanding
-              the people who use it.
-            </motion.p>
-
-            {/* Stats Grid */}
-            <motion.div
-              variants={containerVariants}
-              className="grid grid-cols-2 gap-4"
-            >
-              <motion.div
-                variants={statVariants}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="relative group p-6 rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative z-10">
-                  <div className="text-4xl font-black bg-gradient-to-r from-primary to-indigo-500 bg-clip-text text-transparent">
-                    100%
-                  </div>
-                  <div className="text-sm font-semibold text-muted-foreground mt-2 group-hover:text-foreground transition-colors">
-                    Client Satisfaction
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                variants={statVariants}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="relative group p-6 rounded-2xl border-2 border-accent/30 bg-gradient-to-br from-accent/10 to-accent/5 backdrop-blur-sm overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative z-10">
-                  <div className="text-4xl font-black bg-gradient-to-r from-accent to-emerald-500 bg-clip-text text-transparent">
-                    24/7
-                  </div>
-                  <div className="text-sm font-semibold text-muted-foreground mt-2 group-hover:text-foreground transition-colors">
-                    Support Available
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-gray-300 uppercase tracking-widest">Our Expertise</span>
           </motion.div>
 
-          {/* Right Services Grid */}
-          <motion.div
-            className="grid sm:grid-cols-2 gap-6"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 max-w-3xl"
           >
-            {SERVICES.map((service, i) => {
-              const Icon = ICON_MAP[service.icon];
-              return (
-                <motion.div
-                  key={service.title}
-                  variants={itemVariants}
-                  whileHover={{
-                    y: -8,
-                    transition: { type: "spring", stiffness: 300 },
-                  }}
-                  className="group relative"
-                >
-                  {/* Background gradient effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10" />
+            Engineering <span className="bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">Digital Excellence</span>
+          </motion.h2>
 
-                  <div className="relative p-8 rounded-2xl border-2 border-border/50 bg-gradient-to-br from-card/80 to-background/80 backdrop-blur-md hover:border-primary/50 transition-all duration-300 overflow-hidden h-full">
-                    {/* Animated background */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-primary/0 to-accent/0 group-hover:from-primary/10 group-hover:to-accent/10 transition-all duration-500"
-                      animate={{
-                        backgroundPosition: ["0% 0%", "100% 100%"],
-                      }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                    />
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-gray-400 max-w-2xl leading-relaxed"
+          >
+            We don't just write code. We architect scalable, high-performance web applications that drive real business growth and leave lasting impressions.
+          </motion.p>
+        </div>
 
-                    {/* Icon */}
-                    <motion.div
-                      whileHover={{ rotate: 360, scale: 1.1 }}
-                      transition={{ duration: 0.6, type: "spring" }}
-                      className="relative z-10 h-14 w-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-6 group-hover:from-primary group-hover:to-accent group-hover:text-primary-foreground transition-all duration-300 border border-primary/20 group-hover:border-primary/50"
-                    >
-                      {Icon && <Icon className="h-6 w-6 text-primary group-hover:text-primary-foreground transition-colors" />}
-                    </motion.div>
-
-                    {/* Title */}
-                    <h3 className="relative z-10 text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                      {service.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="relative z-10 text-sm text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors">
-                      {service.description}
-                    </p>
-
-                    {/* Hover indicator */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -10 }}
-                      whileHover={{ opacity: 1, x: 0 }}
-                      className="relative z-10 mt-4 text-primary font-semibold text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                    >
-                      Learn more →
-                    </motion.div>
+        {/* Timeline / Process Section */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
+          <div className="space-y-8">
+            {[
+              { year: "Strategy", title: "Discovery & Planning", desc: "We analyze your business goals to formulate a precise technical roadmap." },
+              { year: "Design", title: "UI/UX & Prototyping", desc: "Crafting pixel-perfect, Awwwards-level interfaces that maximize conversion." },
+              { year: "Code", title: "Full-stack Engineering", desc: "Building robust, secure, and blazing-fast applications using modern stacks." },
+              { year: "Launch", title: "Deployment & Scaling", desc: "Seamless launch with enterprise-grade infrastructure and continuous support." },
+            ].map((step, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="relative pl-8 md:pl-0"
+              >
+                <div className="md:hidden absolute left-0 top-0 bottom-0 w-px bg-white/10" />
+                <div className="md:hidden absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-primary" />
+                
+                <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8 group">
+                  <div className="hidden md:block w-32 shrink-0 pt-1 text-right">
+                    <span className="text-sm font-bold text-primary uppercase tracking-widest">{step.year}</span>
                   </div>
-                </motion.div>
-              );
-            })}
+                  <div className="hidden md:flex flex-col items-center">
+                    <div className="w-4 h-4 rounded-full border-2 border-primary bg-black group-hover:bg-primary transition-colors z-10" />
+                    {idx !== 3 && <div className="w-px h-full bg-white/10 group-hover:bg-primary/50 transition-colors my-2 min-h-[60px]" />}
+                  </div>
+                  <div className="flex-1 pb-8 md:pb-0">
+                    <h4 className="text-xl font-bold text-white mb-2">{step.title}</h4>
+                    <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            style={{ y }}
+            className="relative rounded-[2.5rem] border border-white/10 bg-white/[0.02] p-8 overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50" />
+            <div className="relative z-10 grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <div className="rounded-3xl border border-white/10 bg-black/50 p-6 backdrop-blur-md">
+                  <div className="text-4xl font-bold text-white mb-2">99<span className="text-primary">%</span></div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Client Retention</div>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-black/50 p-6 backdrop-blur-md">
+                  <div className="text-4xl font-bold text-white mb-2">100<span className="text-primary">%</span></div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider font-semibold">In-house Code</div>
+                </div>
+              </div>
+              <div className="space-y-4 pt-8">
+                <div className="rounded-3xl border border-white/10 bg-black/50 p-6 backdrop-blur-md">
+                  <div className="text-4xl font-bold text-white mb-2">24<span className="text-primary">/7</span></div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Support SLA</div>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-black/50 p-6 backdrop-blur-md">
+                  <div className="text-4xl font-bold text-white mb-2">&lt;2<span className="text-primary">s</span></div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Load Times</div>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
 
-        {/* Bottom accent line */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-16 h-1 bg-gradient-to-r from-transparent via-primary to-transparent origin-left"
-        />
+        {/* 3D Skill Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 perspective-1000">
+          {SERVICES.map((service, idx) => (
+            <SkillCard key={service.title} service={service} index={idx} />
+          ))}
+        </div>
       </div>
     </section>
   );

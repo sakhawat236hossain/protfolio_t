@@ -1,153 +1,77 @@
-// "use client";
-
-// import { motion } from "framer-motion";
-// import { CLIENTS_DATA, TESTIMONIALS } from "@/utils/constants";
-// import { Quote } from "lucide-react";
-
-// export default function Clients() {
-//   return (
-//     <section id="clients" className="py-20 lg:py-32 bg-secondary/30">
-//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//         <motion.div
-//           initial={{ opacity: 0, y: 20 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           viewport={{ once: true }}
-//           className="text-center mb-12"
-//         >
-//           <span className="text-sm font-semibold text-primary uppercase tracking-wider">
-//             Trusted By
-//           </span>
-//           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
-//             Our <span className="text-primary">Clients</span>
-//           </h2>
-//           <p className="max-w-2xl mx-auto text-muted-foreground">
-//             We have partnered with businesses of all sizes to deliver transformative digital solutions.
-//           </p>
-//         </motion.div>
-
-//         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-16">
-//           {CLIENTS_DATA.map((client, i) => (
-//             <motion.div
-//               key={client.name}
-//               initial={{ opacity: 0, y: 20 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               viewport={{ once: true }}
-//               transition={{ delay: i * 0.05 }}
-//               className="flex flex-col items-center justify-center p-6 rounded-lg border border-border bg-background hover:border-primary/30 transition-colors"
-//             >
-//               <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-//                 <span className="text-primary font-bold text-lg">{client.logo}</span>
-//               </div>
-//               <span className="text-sm font-medium text-muted-foreground">
-//                 {client.name}
-//               </span>
-//             </motion.div>
-//           ))}
-//         </div>
-
-//         <div className="grid md:grid-cols-3 gap-6">
-//           {TESTIMONIALS.map((testimonial, i) => (
-//             <motion.div
-//               key={testimonial.name}
-//               initial={{ opacity: 0, y: 20 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               viewport={{ once: true }}
-//               transition={{ delay: i * 0.1 }}
-//               className="relative p-6 rounded-lg border border-border bg-background"
-//             >
-//               <Quote className="h-8 w-8 text-primary/20 absolute top-4 right-4" />
-//               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-//                 &ldquo;{testimonial.text}&rdquo;
-//               </p>
-//               <div>
-//                 <div className="font-semibold text-sm">{testimonial.name}</div>
-//                 <div className="text-xs text-muted-foreground">
-//                   {testimonial.role}
-//                 </div>
-//               </div>
-//             </motion.div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-
-
-
-
-
 "use client";
 
 import { motion } from "framer-motion";
-import { Quote, Star } from "lucide-react";
+import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback, useEffect, useState } from "react";
 
 const CLIENTS_DATA = [
-  { name: "Stripe", logoUrl: "https://cdn.simpleicons.org/stripe" },
-  { name: "Vercel", logoUrl: "https://cdn.simpleicons.org/vercel" },
-  { name: "Figma", logoUrl: "https://cdn.simpleicons.org/figma" },
-  { name: "Airbnb", logoUrl: "https://cdn.simpleicons.org/airbnb" },
-  { name: "Supabase", logoUrl: "https://cdn.simpleicons.org/supabase" },
-  { name: "GitHub", logoUrl: "https://cdn.simpleicons.org/github" },
-  { 
-    name: "Slack", 
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg" 
-  },
-  { name: "Framer", logoUrl: "https://cdn.simpleicons.org/framer" },
+  { name: "Stripe", logoUrl: "https://cdn.simpleicons.org/stripe/gray" },
+  { name: "Vercel", logoUrl: "https://cdn.simpleicons.org/vercel/gray" },
+  { name: "Figma", logoUrl: "https://cdn.simpleicons.org/figma/gray" },
+  { name: "Airbnb", logoUrl: "https://cdn.simpleicons.org/airbnb/gray" },
+  { name: "Supabase", logoUrl: "https://cdn.simpleicons.org/supabase/gray" },
+  { name: "GitHub", logoUrl: "https://cdn.simpleicons.org/github/gray" },
+  { name: "Framer", logoUrl: "https://cdn.simpleicons.org/framer/gray" },
 ];
 
 const TESTIMONIALS = [
   {
     name: "Sarah Jenkins",
     role: "Product Lead at Stripe",
-    text: "Working with this team has completely transformed our product workflow. The attention to detail and clean implementation exceeded our expectations.",
+    text: "Working with this team has completely transformed our product workflow. The attention to detail, premium design aesthetic, and clean implementation exceeded our expectations.",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120&h=120",
+    metrics: "+45% Conversion Rate",
   },
   {
     name: "Alex Rivera",
     role: "CTO at TechFlow",
-    text: "They delivered exceptional performance optimizations that reduced our page load times by 40%. Highly professional, communicative, and technically superb.",
+    text: "They delivered exceptional performance optimizations that reduced our page load times significantly. Highly professional, communicative, and technically superb.",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120&h=120",
+    metrics: "-60% Bounce Rate",
   },
   {
     name: "Emily Chen",
     role: "VP of Growth at Figma",
-    text: "A true partnership. They didn't just write code; they understood our business goals and helped us iterate rapidly with high-fidelity components.",
+    text: "A true partnership. They didn't just write code; they understood our business goals and helped us iterate rapidly with high-fidelity Awwwards-level components.",
     avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120&h=120",
+    metrics: "2x User Engagement",
   },
 ];
 
-// Framer motion animations
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15,
-    },
-  },
-};
-
 export default function Clients() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on("select", onSelect);
+    
+    // Auto slider
+    const autoplay = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 5000);
+    
+    return () => clearInterval(autoplay);
+  }, [emblaApi, onSelect]);
+
   return (
-    <section id="clients" className="relative py-24 lg:py-32 bg-background overflow-hidden">
+    <section id="clients" className="relative py-24 lg:py-32 bg-[#0a0a0a] overflow-hidden">
       {/* Background radial gradients for depth */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      </div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-primary/5 via-[#0a0a0a] to-[#0a0a0a] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -156,109 +80,113 @@ export default function Clients() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center mb-16 lg:mb-20"
+          className="text-center mb-20"
         >
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary uppercase tracking-wider mb-4 border border-primary/20">
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-gray-300 uppercase tracking-widest mb-6 backdrop-blur-sm">
             Trusted Partners
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mt-1 mb-4 text-foreground">
-            Our <span className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Clients</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
+            Loved By <span className="text-primary">Industry Leaders</span>
           </h2>
-          <p className="max-w-2xl mx-auto text-base sm:text-lg text-muted-foreground leading-relaxed">
-            We partner with innovative teams to build scalable, robust products that power the modern web.
+          <p className="max-w-2xl mx-auto text-lg text-gray-400 leading-relaxed">
+            We partner with innovative teams to build scalable, robust products that power the modern web and drive incredible conversion rates.
           </p>
         </motion.div>
 
         {/* Client Logos Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-4 lg:gap-6 mb-24"
-        >
-          {CLIENTS_DATA.map((client) => (
+        <div className="flex flex-wrap justify-center gap-8 lg:gap-12 mb-24 opacity-60">
+          {CLIENTS_DATA.map((client, idx) => (
             <motion.div
               key={client.name}
-              variants={itemVariants}
-              className="group relative flex flex-col items-center justify-center p-8 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/[0.02] transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="flex items-center justify-center w-32 h-16 hover:opacity-100 transition-opacity duration-300 cursor-pointer"
             >
-              <div className="relative z-10 h-10 w-full flex items-center justify-center mb-3">
-                <img
-                  src={client.logoUrl}
-                  alt={`${client.name} logo`}
-                  className="h-7 w-auto object-contain filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 dark:invert dark:group-hover:invert-0"
-                  loading="lazy"
-                />
-              </div>
-              <span className="relative z-10 text-xs font-medium uppercase tracking-wider text-muted-foreground/60 group-hover:text-foreground transition-colors duration-300">
-                {client.name}
-              </span>
+              <img
+                src={client.logoUrl}
+                alt={`${client.name} logo`}
+                className="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+              />
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Section Divider */}
-        <div className="relative flex items-center justify-center mb-16">
-          <div className="absolute inset-0 flex items-center" aria-hidden="true">
-            <div className="w-full border-t border-border/80" />
-          </div>
-          <span className="relative bg-background px-4 text-xs font-bold tracking-widest text-muted-foreground/75 uppercase">
-            Testimonials
-          </span>
         </div>
 
-        {/* Testimonials Grid */}
+        {/* Testimonials Auto Slider */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-3 gap-6 lg:gap-8"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="relative max-w-4xl mx-auto"
         >
-          {TESTIMONIALS.map((testimonial) => (
-            <motion.div
-              key={testimonial.name}
-              variants={itemVariants}
-              className="relative flex flex-col justify-between p-8 rounded-2xl border border-border/60 bg-card hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-black/[0.02]"
+          <div className="absolute top-0 left-8 text-primary/10">
+            <Quote className="w-24 h-24 rotate-180" />
+          </div>
+          
+          <div className="overflow-hidden rounded-[2.5rem] bg-white/[0.02] border border-white/10 backdrop-blur-xl p-8 lg:p-16" ref={emblaRef}>
+            <div className="flex">
+              {TESTIMONIALS.map((testimonial, idx) => (
+                <div key={idx} className="flex-[0_0_100%] min-w-0 relative">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="flex gap-1 text-yellow-400 mb-8">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 fill-current" />
+                      ))}
+                    </div>
+                    
+                    <p className="text-xl lg:text-3xl font-medium text-white leading-relaxed mb-12">
+                      "{testimonial.text}"
+                    </p>
+                    
+                    <div className="flex flex-col items-center gap-4">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-primary rounded-full blur-md opacity-50" />
+                        <img
+                          src={testimonial.avatar}
+                          alt={testimonial.name}
+                          className="relative w-16 h-16 rounded-full object-cover border-2 border-white/20"
+                        />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-bold text-lg">{testimonial.name}</h4>
+                        <p className="text-gray-400 text-sm">{testimonial.role}</p>
+                      </div>
+                      <div className="mt-2 inline-block px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-semibold">
+                        {testimonial.metrics}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Carousel Controls */}
+          <div className="flex items-center justify-center gap-4 mt-8">
+            <button
+              onClick={scrollPrev}
+              className="p-3 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors hover-target"
             >
-              {/* Subtle hover background accent */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-transparent to-muted/20 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-              <div className="relative z-10">
-                {/* Stars and Quote Icon */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex gap-1 text-amber-500">
-                    {[...Array(5)].map((_, idx) => (
-                      <Star key={idx} className="h-4 w-4 fill-current" />
-                    ))}
-                  </div>
-                  <Quote className="h-8 w-8 text-primary/10" />
-                </div>
-
-                <blockquote className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 italic">
-                  &ldquo;{testimonial.text}&rdquo;
-                </blockquote>
-              </div>
-
-              {/* Author Info block */}
-              <div className="relative z-10 flex items-center gap-4 pt-4 border-t border-border/40">
-                <img
-                  src={testimonial.avatar}
-                  alt={testimonial.name}
-                  className="flex-shrink-0 h-12 w-12 rounded-full object-cover border-2 border-primary/20 hover:border-primary transition-colors duration-300"
-                  loading="lazy"
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <div className="flex gap-2">
+              {TESTIMONIALS.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    idx === selectedIndex ? "w-8 bg-primary" : "w-2 bg-white/20"
+                  }`}
                 />
-                <div>
-                  <div className="font-bold text-sm text-foreground">{testimonial.name}</div>
-                  <div className="text-xs text-muted-foreground font-medium">
-                    {testimonial.role}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              ))}
+            </div>
+            <button
+              onClick={scrollNext}
+              className="p-3 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors hover-target"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </motion.div>
       </div>
     </section>
