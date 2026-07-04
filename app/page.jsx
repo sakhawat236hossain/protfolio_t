@@ -8,6 +8,10 @@ import FAQ from "@/components/home/FAQ";
 import CTA from "@/components/home/CTA";
 import Footer from "@/components/home/Footer";
 import WhatsAppWidget from "@/components/home/WhatsAppWidget";
+import WhyChooseUs from "@/components/home/WhyChooseUs";
+import ROIImpact from "@/components/home/ROIImpact";
+import DevelopmentProcess from "@/components/home/DevelopmentProcess";
+import VideoShowcase from "@/components/home/VideoShowcase";
 
 export default function Home() {
   return (
@@ -16,6 +20,10 @@ export default function Home() {
       <Hero />
       <About />
       <Projects />
+      <WhyChooseUs />
+      <ROIImpact />
+      <DevelopmentProcess />
+      <VideoShowcase />
       <Pricing />
       <Clients />
       <FAQ />
