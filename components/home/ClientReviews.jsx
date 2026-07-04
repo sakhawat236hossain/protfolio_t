@@ -43,9 +43,9 @@ export default function ClientReviews() {
             </div>
           </motion.div>
 
-          <div className="mt-6 flex items-center justify-center gap-4">
-            <button onClick={() => setIndex((index - 1 + REVIEWS.length) % REVIEWS.length)} className="px-4 py-2 rounded-full bg-white/6">Prev</button>
-            <button onClick={() => setIndex((index + 1) % REVIEWS.length)} className="px-4 py-2 rounded-full bg-white/6">Next</button>
+          <div className="mt-6 flex items-center justify-center gap-4" aria-label="Testimonial controls">
+            <button type="button" onClick={() => setIndex((index - 1 + REVIEWS.length) % REVIEWS.length)} className="px-4 py-2 rounded-full bg-white/6 text-white hover:bg-white/10 transition-colors" aria-label="Show previous testimonial">Prev</button>
+            <button type="button" onClick={() => setIndex((index + 1) % REVIEWS.length)} className="px-4 py-2 rounded-full bg-white/6 text-white hover:bg-white/10 transition-colors" aria-label="Show next testimonial">Next</button>
           </div>
         </div>
       </div>

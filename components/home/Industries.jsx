@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, BookOpen, Coffee, ShoppingCart, Home, Airplay, Tool, Users } from "lucide-react";
+import { Heart, BookOpen, Coffee, ShoppingCart, Home, Airplay, Wrench, Users } from "lucide-react";
 
 const INDUSTRIES = [
   { title: "Healthcare", icon: Heart },
@@ -10,7 +10,7 @@ const INDUSTRIES = [
   { title: "E-Commerce", icon: ShoppingCart },
   { title: "Real Estate", icon: Home },
   { title: "Travel & Booking", icon: Airplay },
-  { title: "ERP Systems", icon: Tool },
+  { title: "ERP Systems", icon: Wrench },
   { title: "POS Systems", icon: Users },
 ];
 
